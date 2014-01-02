@@ -1,0 +1,11 @@
+{
+  "name": "One two three",
+  "description": "App voor kinderen om spelenderwijs bij te leren.",
+  "version": "0.1",
+  "app": {
+    "background": {
+      "scripts": ["js/startup.js"]
+    }
+  },
+  "icons": { "16": "icon128.png", "128": "icon128.png" }
+}

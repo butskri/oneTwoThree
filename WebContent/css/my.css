@@ -1,0 +1,60 @@
+div.question {
+	width: 75%;
+	margin: auto;
+}
+
+.question {
+	font-size: 300%;
+}
+
+div.answers {
+	width: 60%;
+	margin: auto;
+}
+
+li.answer {
+	width: 40%;
+	height: 40%;
+	margin-left: 5%;
+	margin-right: 5%;
+	float: left;
+}
+
+img.answer {
+	max-width: 100%;
+	border:20px solid white;
+	border-radius:15px;
+}
+
+img.answer.selected {
+	border:20px solid #8AC007;
+	border-radius:15px;
+}
+
+ul {
+	list-style: none;
+	clear: both;
+}
+
+div.buttons {
+	width: 60%;
+	margin: auto;
+}
+
+li.button {
+	width: 20%;
+	height: 20%;
+	margin-left: 15%;
+	margin-right: 15%;
+	float: left;
+}
+
+img.button {
+	max-width: 100%;
+}
+
+div.button {
+	background-color: #8edc48;
+	color: white;
+	border-radius: 10px;
+}
