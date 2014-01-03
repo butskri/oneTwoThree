@@ -2,10 +2,33 @@ logForDebugging = function(msg) {
 	console.log(msg);
 };
 
+var SOUNDS = (function() {
+	playSoundRightAnswer = function() {
+		playSound('../sounds/Ellen-GoedGedaanHanne.mp3');
+	};
+
+	playSoundWrongAnswer = function() {
+		playSound('../sounds/1_Wrong buzzer.mp3');
+	};
+
+	playSound = function(srcGeluid) {
+		var sound = new Audio();
+		sound.src = srcGeluid;
+	    sound.play();
+		logForDebugging('played ' + srcGeluid + '!');
+	};
+	
+	return {
+		playSoundRightAnswer: playSoundRightAnswer,
+		playSoundWrongAnswer: playSoundWrongAnswer,
+		playSound: playSound
+	};
+})();
 
 createExercise = function(exerciseName) {
 	var name = exerciseName;
 	var question = 'defaultQuestion';
+	var questionSound = '';
 	var selectedAnswer = 1;
 	var rightAnswer = 1;
 	
@@ -21,6 +44,10 @@ createExercise = function(exerciseName) {
 	withRightAnswer = function(newRightAnswer) {
 		rightAnswer = newRightAnswer;
 		return this;
+	};
+	
+	getQuestionSound = function() {
+		return '../' + name + '/question.mp3';
 	};
 	
 	setUp = function() {
@@ -48,7 +75,8 @@ createExercise = function(exerciseName) {
 		withQuestion: withQuestion,
 		withRightAnswer: withRightAnswer,
 		isRightAnswerSelected: isRightAnswerSelected,
-		selectAnswer: selectAnswer
+		selectAnswer: selectAnswer,
+		getQuestionSound: getQuestionSound
 	};
 };
 
@@ -64,6 +92,11 @@ var APP = (function() {
 	  currentExercise.setUp();
 	  setUpPossibleAnswers();
 	  showValidateButton();
+	  playQuestionSound();
+	};
+	
+	playQuestionSound = function() {
+	  SOUNDS.playSound(currentExercise.getQuestionSound());
 	};
 	
 	setUpPossibleAnswers = function() {
@@ -131,32 +164,10 @@ var APP = (function() {
 		currentExercise: currentExercise,
 		setUp: setUp,
 		selectAnswer: selectAnswer,
-		checkAnswer: checkAnswer
+		checkAnswer: checkAnswer,
+		playQuestionSound: playQuestionSound
 	};
 })();
-
-var SOUNDS = (function() {
-	playSoundRightAnswer = function() {
-		playSound('../sounds/Ellen-Bravo.mp3');
-	};
-
-	playSoundWrongAnswer = function() {
-		playSound('../sounds/1_Wrong buzzer.mp3');
-	};
-
-	playSound = function(srcGeluid) {
-		var sound = new Audio();
-		sound.src = srcGeluid;
-	    sound.play();
-		logForDebugging('played ' + srcGeluid + '!');
-	};
-	
-	return {
-		playSoundRightAnswer: playSoundRightAnswer,
-		playSoundWrongAnswer: playSoundWrongAnswer
-	};
-})();
-
 
 answerIdFor = function(answerNumber) {
 	return '#answer' + answerNumber;
@@ -165,6 +176,7 @@ answerIdFor = function(answerNumber) {
 initializeApp = function() {
   logForDebugging('starting app...');
   $('#validateButton').click(APP.checkAnswer);
+  $('#replayQuestion').click(APP.playQuestionSound);
   APP.setUp();
 };
 
