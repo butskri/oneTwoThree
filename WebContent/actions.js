@@ -4,11 +4,11 @@ logForDebugging = function(msg) {
 
 var SOUNDS = (function() {
 	playSoundRightAnswer = function() {
-		playSound('../sounds/GoedGedaanHanne.mp3');
+		playSound('sounds/GoedGedaanHanne.mp3');
 	};
 
 	playSoundWrongAnswer = function() {
-		playSound('../sounds/WrongBuzzer.mp3');
+		playSound('sounds/WrongBuzzer.mp3');
 	};
 
 	playSound = function(srcGeluid) {
@@ -47,7 +47,7 @@ createExercise = function(exerciseName) {
 	};
 	
 	getQuestionSound = function() {
-		return '../' + name + '/question.mp3';
+		return name + '/question.mp3';
 	};
 	
 	setUp = function() {
