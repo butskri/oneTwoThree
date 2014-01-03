@@ -27,23 +27,22 @@ var SOUNDS = (function() {
 
 createExercise = function(exerciseName) {
 	var name = exerciseName;
-	var question = 'defaultQuestion';
-	var questionSound = '';
+	var question = 'undefined';
+	var rightAnswer = 0;
 	var selectedAnswer = 1;
-	var rightAnswer = 1;
+	
+	$.getJSON(name + '/exercise.json', function(data) {
+		question = data.question;
+		rightAnswer = data.rightAnswer;
+		setUp();
+	}, function() {});
 	
 	isRightAnswerSelected = function() {
 	  return rightAnswer == selectedAnswer;
 	};
 	
-	withQuestion = function(newQuestion) {
-		question = newQuestion;
-		return this;
-	};
-	
-	withRightAnswer = function(newRightAnswer) {
-		rightAnswer = newRightAnswer;
-		return this;
+	playQuestion = function() {
+		SOUNDS.playSound(getQuestionSound());
 	};
 	
 	getQuestionSound = function() {
@@ -71,12 +70,9 @@ createExercise = function(exerciseName) {
 	};
 	
 	return {
-		setUp: setUp,
-		withQuestion: withQuestion,
-		withRightAnswer: withRightAnswer,
 		isRightAnswerSelected: isRightAnswerSelected,
 		selectAnswer: selectAnswer,
-		getQuestionSound: getQuestionSound
+		playQuestion: playQuestion
 	};
 };
 
@@ -85,18 +81,18 @@ var APP = (function() {
 	
 	setUp = function() {
       logForDebugging('setting up app');
-	  currentExercise = createExercise('exercise1');
-	  currentExercise.withQuestion('Waar zie je het getal drie?');
-	  currentExercise.withRightAnswer(3);
-      logForDebugging('created exercise: ' + currentExercise);
-	  currentExercise.setUp();
-	  setUpPossibleAnswers();
-	  showValidateButton();
-	  playQuestionSound();
+      setUpPossibleAnswers();
+	  setUpExercise('exercise1');
+	};
+	
+	setUpExercise = function(name) {
+		currentExercise = createExercise('exercise1');
+        showValidateButton();
+		playQuestionSound();
 	};
 	
 	playQuestionSound = function() {
-	  SOUNDS.playSound(currentExercise.getQuestionSound());
+	  currentExercise.playQuestion();
 	};
 	
 	setUpPossibleAnswers = function() {
@@ -181,4 +177,3 @@ initializeApp = function() {
 };
 
 $(initializeApp);
-
