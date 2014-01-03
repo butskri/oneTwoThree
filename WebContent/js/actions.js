@@ -4,11 +4,11 @@ logForDebugging = function(msg) {
 
 var SOUNDS = (function() {
 	playSoundRightAnswer = function() {
-		playSound('../sounds/Ellen-GoedGedaanHanne.mp3');
+		playSound('../sounds/GoedGedaanHanne.mp3');
 	};
 
 	playSoundWrongAnswer = function() {
-		playSound('../sounds/1_Wrong buzzer.mp3');
+		playSound('../sounds/WrongBuzzer.mp3');
 	};
 
 	playSound = function(srcGeluid) {
@@ -63,7 +63,7 @@ createExercise = function(exerciseName) {
 	};
 	
 	answerImageFor = function(answerNumber) {
-		return 'img/' + name + '/' + answerNumber + '.png';
+		return name + '/' + answerNumber + '.png';
 	};
 	
 	selectAnswer = function(newSelectedAnswer) {
@@ -86,9 +86,9 @@ var APP = (function() {
 	setUp = function() {
       logForDebugging('setting up app');
 	  currentExercise = createExercise('exercise1');
-      logForDebugging('created exercise: ' + currentExercise);
 	  currentExercise.withQuestion('Waar zie je het getal drie?');
 	  currentExercise.withRightAnswer(3);
+      logForDebugging('created exercise: ' + currentExercise);
 	  currentExercise.setUp();
 	  setUpPossibleAnswers();
 	  showValidateButton();
