@@ -86,8 +86,8 @@ var APP = (function() {
 	};
 	
 	setUpExercise = function(name) {
-		currentExercise = createExercise('exercise1');
-        showValidateButton();
+		currentExercise = createExercise(name);
+		APP.selectAnswer(1);
 		playQuestionSound();
 	};
 	
@@ -156,12 +156,22 @@ var APP = (function() {
 		$('#validateButton').hide();
 	};
 	
+	next = function() {
+		  setUpExercise('exercise2');
+	};
+	
+	previous = function() {
+		  setUpExercise('exercise1');
+	};
+	
 	return {
 		currentExercise: currentExercise,
 		setUp: setUp,
 		selectAnswer: selectAnswer,
 		checkAnswer: checkAnswer,
-		playQuestionSound: playQuestionSound
+		playQuestionSound: playQuestionSound,
+		next: next,
+		previous: previous
 	};
 })();
 
@@ -173,6 +183,8 @@ initializeApp = function() {
   logForDebugging('starting app...');
   $('#validateButton').click(APP.checkAnswer);
   $('#replayQuestion').click(APP.playQuestionSound);
+  $('#previousLink').click(APP.previous);
+  $('#nextLink').click(APP.next);
   APP.setUp();
 };
 
