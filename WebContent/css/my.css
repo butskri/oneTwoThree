@@ -80,3 +80,24 @@ div.button.wrong {
 div.button.right {
 	background-color: orange;
 }
+
+div.navigation {
+	display: block;	
+	position: fixed;
+	top: 50%;
+	margin-top: -50px;
+	padding: 2% 2%;
+	background: #8edc48;
+	color: white;
+	font-size:500%;
+}
+
+div.navigation.left {
+	left: 0;
+	float: left;
+}
+
+div.navigation.right {
+	right: 0;
+	float: right;
+}
