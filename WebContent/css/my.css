@@ -65,13 +65,18 @@ ul {
 
 div.button {
 	width: 30%;
-	height: 60%;
 	background-color: #8edc48;
 	color: white;
 	border-radius: 10px;
 	margin: auto;
 	text-align: center;
-	font-size:400%;
-	padding: 2.5%;
-	float: left;
+	font-size:500%;
+}
+
+div.button.wrong {
+	background-color: red;
+}
+
+div.button.right {
+	background-color: orange;
 }

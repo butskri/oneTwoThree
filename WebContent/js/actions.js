@@ -24,7 +24,7 @@ createExercise = function(exerciseName) {
 	};
 	
 	setUp = function() {
-		$('#question').html(question);
+		$('#title').html(question);
 		setUpAnswerImageFor(1);
 		setUpAnswerImageFor(2);
 		setUpAnswerImageFor(3);
@@ -63,6 +63,7 @@ var APP = (function() {
 	  currentExercise.withRightAnswer(3);
 	  currentExercise.setUp();
 	  setUpPossibleAnswers();
+	  showValidateButton();
 	};
 	
 	setUpPossibleAnswers = function() {
@@ -84,6 +85,7 @@ var APP = (function() {
 		removeCssClassSelectedFor(3);
 		removeCssClassSelectedFor(4);
 		addCssClassSelectedFor(answerNumber);
+		showValidateButton();
 	};
 
 	removeCssClassSelectedFor = function(answerNumber) {
@@ -96,10 +98,33 @@ var APP = (function() {
 
 	checkAnswer = function() {
 		if (currentExercise.isRightAnswerSelected()) {
-			SOUNDS.playSoundRightAnswer();
+			rightAnswerWasSelected();
 		} else {
-			SOUNDS.playSoundWrongAnswer();
+			wrongAnswerWasSelected();
 		}
+	};
+	
+	showValidateButton = function() {
+		hideAllButtons();
+		$('#validateButton').show();
+	};
+	
+	rightAnswerWasSelected = function() {
+		hideAllButtons();
+		$('#rightButton').show();
+		SOUNDS.playSoundRightAnswer();
+	};
+	
+	wrongAnswerWasSelected = function() {
+		hideAllButtons();
+		$('#wrongButton').show();
+		SOUNDS.playSoundWrongAnswer();
+	};
+	
+	hideAllButtons = function() {
+		$('#rightButton').hide();
+		$('#wrongButton').hide();
+		$('#validateButton').hide();
 	};
 	
 	return {
@@ -139,7 +164,7 @@ answerIdFor = function(answerNumber) {
 
 initializeApp = function() {
   logForDebugging('starting app...');
-  $('#valideren').click(APP.checkAnswer);
+  $('#validateButton').click(APP.checkAnswer);
   APP.setUp();
 };
 
