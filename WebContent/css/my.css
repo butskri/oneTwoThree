@@ -19,7 +19,7 @@ div.question {
 	color: white;
 	width: 75%;
 	margin: auto;
-	font-size: 300%;
+	font-size: 3em;
 	padding: 2%;
 	border-radius: 10px;
 }
@@ -38,29 +38,25 @@ div.buttons {
 	position: relative;
 }
 
-li.answer {
-	width: 40%;
-	height: 40%;
-	margin-left: 5%;
-	margin-right: 5%;
+div.answer {
+	margin-top: 5%;
+	width: 37%;
+	height: 37%;
+	margin-left: 6.5%;
+	margin-right: 6.5%;
 	float: left;
 }
 
 img.answer {
 	max-width: 100%;
 	max-height: 25%;
-	border:20px solid white;
+	border:1.75em solid white;
 	border-radius:15px;
 }
 
 img.answer.selected {
-	border:20px solid #8edc48;
+	border:1.75em solid #8edc48;
 	border-radius:15px;
-}
-
-ul {
-	list-style: none;
-	clear: both;
 }
 
 div.button {
@@ -70,7 +66,7 @@ div.button {
 	border-radius: 10px;
 	margin: auto;
 	text-align: center;
-	font-size:500%;
+	font-size:5em;
 }
 
 div.navigation {
@@ -81,7 +77,7 @@ div.navigation {
 	padding: 2% 2%;
 	background: #8edc48;
 	color: white;
-	font-size:500%;
+	font-size:5em;
 }
 
 div.navigation.left {
@@ -144,9 +140,9 @@ body.wrong div.navigation {
 }
 
 body.right img.answer.selected {
-	border:20px solid orange;
+	border:1.75em solid orange;
 }
 
 body.wrong img.answer.selected {
-	border:20px solid red;
+	border:1.75em solid red;
 }
