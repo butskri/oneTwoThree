@@ -1,3 +1,5 @@
+var exercises = new Array("exercise1", "exercise2");
+
 logForDebugging = function(msg) {
 	console.log(msg);
 };
@@ -78,12 +80,17 @@ createExercise = function(exerciseName) {
 };
 
 var APP = (function() {
+	var exerciseIndex = 0;
 	var currentExercise = null;
 
 	setUp = function() {
 		logForDebugging('setting up app');
 		setUpPossibleAnswers();
-		setUpExercise('exercise1');
+		setUpCurrentExercise();
+	};
+	
+	setUpCurrentExercise = function() {
+		setUpExercise(exercises[exerciseIndex]);
 	};
 
 	setUpExercise = function(name) {
@@ -160,11 +167,19 @@ var APP = (function() {
 	};
 
 	next = function() {
-		setUpExercise('exercise2');
+		exerciseIndex++;
+		if (exerciseIndex >= exercises.length) {
+			exerciseIndex = 0;
+		}
+		setUpCurrentExercise();
 	};
 
 	previous = function() {
-		setUpExercise('exercise1');
+		exerciseIndex--;
+		if (exerciseIndex < 0) {
+			exerciseIndex = exercises.length - 1;
+		}
+		setUpCurrentExercise();
 	};
 
 	return {
