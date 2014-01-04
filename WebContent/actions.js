@@ -32,10 +32,12 @@ createExercise = function(exerciseName) {
 	var question = 'undefined';
 	var rightAnswer = 0;
 	var selectedAnswer = 1;
+	var possibleAnswers = null;
 
 	$.getJSON(name + '/exercise.json', function(data) {
 		question = data.question;
 		rightAnswer = data.rightAnswer;
+		possibleAnswers = data.possibleAnswers;
 		setUp();
 	}, function() {
 	});
@@ -65,6 +67,9 @@ createExercise = function(exerciseName) {
 	};
 
 	answerImageFor = function(answerNumber) {
+		if (possibleAnswers) {
+			return possibleAnswers[answerNumber -1];
+		}
 		return name + '/' + answerNumber + '.png';
 	};
 

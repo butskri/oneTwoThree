@@ -1,4 +1,5 @@
 {
   "question": "Waar zie je het getal drie?",
+  "possibleAnswers": ["img/1.png", "img/2.png", "img/3.png", "img/4.png"],
   "rightAnswer": "3"
 }
