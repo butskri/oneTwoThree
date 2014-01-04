@@ -27,60 +27,80 @@ var SOUNDS = (function() {
 	};
 })();
 
-createExercise = function(exerciseName) {
-	var name = exerciseName;
-	var question = 'undefined';
-	var rightAnswer = 0;
-	var selectedAnswer = 1;
-	var possibleAnswers = null;
+createExercise = function(theExerciseName) {
+	var exerciseName = theExerciseName;
+	var answers = null;
 
-	$.getJSON(name + '/exercise.json', function(data) {
-		question = data.question;
-		rightAnswer = data.rightAnswer;
-		possibleAnswers = data.possibleAnswers;
-		setUp();
-	}, function() {
-	});
+	$.getJSON(exerciseName + '/exercise.json', function(data) {
+		$('#title').html(data.question);
+		answers = createAnswers(exerciseName, data);
+	}, function() {});
+
+	selectAnswer = function(newSelectedAnswer) {
+		answers.selectAnswer(newSelectedAnswer);
+	};
 
 	isRightAnswerSelected = function() {
-		return rightAnswer == selectedAnswer;
+		return answers.isRightAnswerSelected();
 	};
 
 	playQuestion = function() {
-		SOUNDS.playSound(getQuestionSound());
+		SOUNDS.playSound(questionSound());
 	};
 
-	getQuestionSound = function() {
-		return name + '/question.mp3';
-	};
-
-	setUp = function() {
-		$('#title').html(question);
-		setUpAnswerImageFor(1);
-		setUpAnswerImageFor(2);
-		setUpAnswerImageFor(3);
-		setUpAnswerImageFor(4);
-	};
-
-	setUpAnswerImageFor = function(answerNumber) {
-		$(answerIdFor(answerNumber)).attr('src', answerImageFor(answerNumber));
-	};
-
-	answerImageFor = function(answerNumber) {
-		if (possibleAnswers) {
-			return possibleAnswers[answerNumber -1];
-		}
-		return name + '/' + answerNumber + '.png';
-	};
-
-	selectAnswer = function(newSelectedAnswer) {
-		selectedAnswer = newSelectedAnswer;
+	questionSound = function() {
+		return exerciseName + '/question.mp3';
 	};
 
 	return {
 		isRightAnswerSelected : isRightAnswerSelected,
 		selectAnswer : selectAnswer,
 		playQuestion : playQuestion
+	};
+};
+
+createAnswers = function(exerciseName, exerciseData) {
+	possibleAnswerImages = function(exerciseName, exerciseData) {
+		if (exerciseData.possibleAnswers) {
+			return exerciseData.possibleAnswers;
+		}
+		return new Array(exerciseName + '/1.png', exerciseName + '/2.png',exerciseName + '/3.png',exerciseName + '/4.png');
+	};
+	
+	setUpAnswers = function() {
+		setUpAnswerImageFor(1);
+		setUpAnswerImageFor(2);
+		setUpAnswerImageFor(3);
+		setUpAnswerImageFor(4);
+	};
+	
+	setUpAnswerImageFor = function(answerNumber) {
+		$(answerIdFor(answerNumber)).attr('src', getAnswerImage(answerNumber));
+	};
+	
+	getAnswerImage = function(imageNumber) {
+		return possibleAnswerImages[imageNumber - 1];
+	};
+	
+	isRightAnswerSelected = function() {
+		if (selectedAnswer == 0) {
+			return false;
+		}
+		return rightAnswer == getAnswerImage(selectedAnswer);
+	};
+	
+	selectAnswer = function(newSelectedAnswer) {
+		selectedAnswer = newSelectedAnswer;
+	};
+
+	var possibleAnswerImages = possibleAnswerImages(exerciseName, exerciseData);
+	var rightAnswer = getAnswerImage(exerciseData.rightAnswer);
+	var selectedAnswer = 0;
+	setUpAnswers();
+	
+	return {
+		isRightAnswerSelected : isRightAnswerSelected,
+		selectAnswer : selectAnswer
 	};
 };
 
@@ -100,7 +120,7 @@ var APP = (function() {
 
 	setUpExercise = function(name) {
 		currentExercise = createExercise(name);
-		APP.selectAnswer(1);
+		resetSelectedAnswers();
 		playQuestionSound();
 	};
 
@@ -123,13 +143,17 @@ var APP = (function() {
 
 	selectAnswer = function(answerNumber) {
 		logForDebugging('answer selected: ' + answerNumber);
+		resetSelectedAnswers();
 		currentExercise.selectAnswer(answerNumber);
+		addCssClassSelectedFor(answerNumber);
+	};
+	
+	resetSelectedAnswers = function() {
 		removeCssClassSelectedFor(1);
 		removeCssClassSelectedFor(2);
 		removeCssClassSelectedFor(3);
 		removeCssClassSelectedFor(4);
-		addCssClassSelectedFor(answerNumber);
-		showValidateButton();
+		resetBody();
 	};
 
 	removeCssClassSelectedFor = function(answerNumber) {
@@ -146,11 +170,6 @@ var APP = (function() {
 		} else {
 			wrongAnswerWasSelected();
 		}
-	};
-
-	showValidateButton = function() {
-		resetBody();
-		$('#validateButton').show();
 	};
 
 	rightAnswerWasSelected = function() {
