@@ -1,3 +1,10 @@
+/*
+  used colors:
+  #8edc48 -> green
+  #0066ff -> blue
+  red
+*/
+
 html {
 	height: 100%;
 }
@@ -15,7 +22,7 @@ div.wrapper {
 }
 
 div.question {
-	background-color: #8edc48;
+	background-color: #0066ff;
 	color: white;
 	width: 75%;
 	margin: auto;
@@ -55,13 +62,13 @@ img.answer {
 }
 
 img.answer.selected {
-	border:1.75em solid #8edc48;
+	border:1.75em solid #0066ff;
 	border-radius:15px;
 }
 
 div.button {
 	width: 30%;
-	background-color: #8edc48;
+	background-color: #0066ff;
 	color: white;
 	border-radius: 10px;
 	margin: auto;
@@ -75,7 +82,7 @@ div.navigation {
 	top: 50%;
 	margin-top: -50px;
 	padding: 2% 2%;
-	background: #8edc48;
+	background: #0066ff;
 	color: white;
 	font-size:5em;
 }
@@ -96,7 +103,7 @@ body.wrong div.button {
 }
 
 body.right div.button {
-	background-color: orange;
+	background-color: #8edc48;
 }
 
 #wrongAnswerIcon {
@@ -124,7 +131,7 @@ body.wrong #wrongAnswerIcon {
 }
 
 body.right div.question {
-	background-color: orange;
+	background-color: #8edc48;
 }
 
 body.wrong div.question {
@@ -132,7 +139,7 @@ body.wrong div.question {
 }
 
 body.right div.navigation {
-	background-color: orange;
+	background-color: #8edc48;
 }
 
 body.wrong div.navigation {
@@ -140,7 +147,7 @@ body.wrong div.navigation {
 }
 
 body.right img.answer.selected {
-	border:1.75em solid orange;
+	border:1.75em solid #8edc48;
 }
 
 body.wrong img.answer.selected {
