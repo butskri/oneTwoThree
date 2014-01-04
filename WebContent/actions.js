@@ -1,8 +1,25 @@
-var exercises = new Array("exercise1", "exercise2");
-
 logForDebugging = function(msg) {
 	console.log(msg);
 };
+
+function shuffle(array) {
+    var counter = array.length, temp, index;
+
+    // While there are elements in the array
+    while (counter--) {
+        // Pick a random index
+        index = (Math.random() * counter) | 0;
+
+        // And swap the last element with it
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+
+    return array;
+}
+
+var exercises = shuffle(new Array("exercise1", "exercise2"));
 
 var SOUNDS = (function() {
 	playSoundRightAnswer = function() {
@@ -68,6 +85,7 @@ createAnswers = function(exerciseName, exerciseData) {
 	};
 	
 	setUpAnswers = function() {
+		possibleAnswerImages = shuffle(possibleAnswerImages);
 		setUpAnswerImageFor(1);
 		setUpAnswerImageFor(2);
 		setUpAnswerImageFor(3);
