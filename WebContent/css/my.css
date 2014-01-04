@@ -73,14 +73,6 @@ div.button {
 	font-size:500%;
 }
 
-div.button.wrong {
-	background-color: red;
-}
-
-div.button.right {
-	background-color: orange;
-}
-
 div.navigation {
 	display: block;	
 	position: fixed;
@@ -100,4 +92,61 @@ div.navigation.left {
 div.navigation.right {
 	right: 0;
 	float: right;
+}
+
+
+body.wrong div.button {
+	background-color: red;
+}
+
+body.right div.button {
+	background-color: orange;
+}
+
+#wrongAnswerIcon {
+	display: none;
+}
+
+#rightAnswerIcon {
+	display: none;
+}
+
+body.right #rightAnswerIcon {
+	display: block;
+}
+
+body.right #validateIcon {
+	display: none;
+}
+
+body.wrong #validateIcon {
+	display: none;
+}
+
+body.wrong #wrongAnswerIcon {
+	display: block;
+}
+
+body.right div.question {
+	background-color: orange;
+}
+
+body.wrong div.question {
+	background-color: red;
+}
+
+body.right div.navigation {
+	background-color: orange;
+}
+
+body.wrong div.navigation {
+	background-color: red;
+}
+
+body.right img.answer.selected {
+	border:20px solid orange;
+}
+
+body.wrong img.answer.selected {
+	border:20px solid red;
 }

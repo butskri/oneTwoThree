@@ -144,26 +144,25 @@ var APP = (function() {
 	};
 
 	showValidateButton = function() {
-		hideAllButtons();
+		resetBody();
 		$('#validateButton').show();
 	};
 
 	rightAnswerWasSelected = function() {
-		hideAllButtons();
-		$('#rightButton').show();
+		resetBody();
+		$('body').addClass('right');
 		SOUNDS.playSoundRightAnswer();
 	};
 
 	wrongAnswerWasSelected = function() {
-		hideAllButtons();
-		$('#wrongButton').show();
+		resetBody();
+		$('body').addClass('wrong');
 		SOUNDS.playSoundWrongAnswer();
 	};
 
-	hideAllButtons = function() {
-		$('#rightButton').hide();
-		$('#wrongButton').hide();
-		$('#validateButton').hide();
+	resetBody = function() {
+		$('body').removeClass('right');
+		$('body').removeClass('wrong');
 	};
 
 	next = function() {
