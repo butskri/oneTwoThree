@@ -19,7 +19,10 @@ function shuffle(array) {
     return array;
 }
 
-var exercises = shuffle(new Array("exercise1", "exercise2"));
+var exercises = shuffle(new Array("exercise1", "exercise2", "exercise3", "exercise3b", "exercise4", "exercise4b",
+		"exercise5", "exercise5b", "exercise6", "exercise6b", "exercise7", "exercise7b", "exercise8", "exercise8b",
+		"exercise9", "exercise9b", "exercise10", "exercise10b", "exercise11", "exercise11b", "exercise12", "exercise12b",
+		"exercise13", "exercise13b", "exercise14", "exercise14b"));
 
 var SOUNDS = (function() {
 	playSoundRightAnswer = function() {
