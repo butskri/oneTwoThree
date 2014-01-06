@@ -22,7 +22,8 @@ function shuffle(array) {
 var exercises = shuffle(new Array("exercise1", "exercise2", "exercise3", "exercise3b", "exercise4", "exercise4b",
 		"exercise5", "exercise5b", "exercise6", "exercise6b", "exercise7", "exercise7b", "exercise8", "exercise8b",
 		"exercise9", "exercise9b", "exercise10", "exercise10b", "exercise11", "exercise11b", "exercise12", "exercise12b",
-		"exercise13", "exercise13b", "exercise14", "exercise14b", "exercise15", "exercise15b"));
+		"exercise13", "exercise13b", "exercise14", "exercise14b", "exercise15", "exercise15b", "exercise16", "exercise16b",
+		"exercise16c", "exercise16d"));
 
 var SOUNDS = (function() {
 	playSoundRightAnswer = function() {
@@ -53,6 +54,12 @@ createExercise = function(theExerciseName) {
 
 	$.getJSON(exerciseName + '/exercise.json', function(data) {
 		$('#title').html(data.question);
+		if (data.questionImage) {
+			$('#questionImage').attr('src', data.questionImage);
+			$('#questionImageDiv').show();
+		} else {
+			$('#questionImageDiv').hide();
+		}
 		answers = createAnswers(exerciseName, data);
 	}, function() {});
 
