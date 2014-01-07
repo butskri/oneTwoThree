@@ -26,6 +26,7 @@ var exercises = shuffle(new Array("exercise1", "exercise2", "exercise3", "exerci
 		"exercise16c", "exercise16d"));
 
 var SOUNDS = (function() {
+	var sound = new Audio();
 	playSoundRightAnswer = function() {
 		playSound('sounds/GoedGedaanHanne.mp3');
 	};
@@ -34,16 +35,22 @@ var SOUNDS = (function() {
 		playSound('sounds/WrongBuzzer.mp3');
 	};
 
-	playSound = function(srcGeluid) {
-		var sound = new Audio();
-		sound.src = srcGeluid;
-		sound.play();
-		logForDebugging('played ' + srcGeluid + '!');
+	speak = function(sentence) {
+		var encodedSentence = sentence.replace(new RegExp('\\.', 'g'), ' ').replace(new RegExp('\\?', 'g'), ' ').replace(new RegExp(',', 'g'), ' ').replace(new RegExp(' ', 'g'), '%20');
+		var url = 'http://translate.google.com/translate_tts?ie=UTF-8&tl=nl&q=' + encodedSentence;
+		playSound(url);
 	};
 
+	playSound = function(srcGeluid) {
+		sound.pause();
+		sound.src = srcGeluid;
+		sound.play();
+	};
+	
 	return {
 		playSoundRightAnswer : playSoundRightAnswer,
 		playSoundWrongAnswer : playSoundWrongAnswer,
+		speak: speak,
 		playSound : playSound
 	};
 })();
@@ -51,9 +58,13 @@ var SOUNDS = (function() {
 createExercise = function(theExerciseName) {
 	var exerciseName = theExerciseName;
 	var answers = null;
+	var question = null;
+	var questionSound = null;
 
 	$.getJSON(exerciseName + '/exercise.json', function(data) {
 		$('#title').html(data.question);
+		question = data.question;
+		questionSound = data.questionSound;
 		if (data.questionImage) {
 			$('#questionImage').attr('src', data.questionImage);
 			$('#questionImageDiv').show();
@@ -61,6 +72,7 @@ createExercise = function(theExerciseName) {
 			$('#questionImageDiv').hide();
 		}
 		answers = createAnswers(exerciseName, data);
+		playQuestion();
 	}, function() {});
 
 	selectAnswer = function(newSelectedAnswer) {
@@ -72,11 +84,11 @@ createExercise = function(theExerciseName) {
 	};
 
 	playQuestion = function() {
-		SOUNDS.playSound(questionSound());
-	};
-
-	questionSound = function() {
-		return exerciseName + '/question.mp3';
+		if (questionSound) {
+			SOUNDS.playSound(questionSound);
+		} else {
+			SOUNDS.speak(question);
+		}
 	};
 
 	return {
@@ -149,7 +161,6 @@ var APP = (function() {
 	setUpExercise = function(name) {
 		currentExercise = createExercise(name);
 		resetSelectedAnswers();
-		playQuestionSound();
 	};
 
 	playQuestionSound = function() {

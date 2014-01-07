@@ -1,6 +1,7 @@
 {
   "name": "Een Twee Drie",
   "description": "App voor kinderen om spelenderwijs bij te leren.",
+  "permissions": [],
   "version": "0.1",
   "app": {
     "background": {
