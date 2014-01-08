@@ -1,5 +1,6 @@
 {
   "question": "Waar staan de planten gerangschikt van groot naar klein?",
+  "questionSound": "exercise6b/question.mp3",
   "possibleAnswers": ["exercise6/1.gif", "exercise6/2.gif", "exercise6/3.gif", "exercise6/4.gif"],
   "rightAnswer": "3"
 }

@@ -1,6 +1,7 @@
 {
   "question": "Waar vind je het getal vijf?",
   "questionSound": "exercise2/question.mp3",
+  "questionSound": "exercise2/question.mp3",
   "possibleAnswers": ["img/3.png", "img/5.png", "img/7.png", "img/8.png"],
   "rightAnswer": "2"
 }

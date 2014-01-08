@@ -1,5 +1,6 @@
 {
   "question": "Waar staan de vuurtorens gerangschikt van groot naar klein?",
+  "questionSound": "exercise4/question.mp3",
   "possibleAnswers": ["exercise4/1.gif", "exercise4/2.gif", "exercise4/3.gif", "exercise4/4.gif"],
   "rightAnswer": "4"
 }

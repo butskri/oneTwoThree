@@ -1,5 +1,6 @@
 {
   "question": "Waar staan de aardbeien gerangschikt van klein naar groot?",
+  "questionSound": "exercise8/question.mp3",
   "possibleAnswers": ["exercise8/1.gif", "exercise8/2.gif", "exercise8/3.gif", "exercise8/4.gif"],
   "rightAnswer": "4"
 }

@@ -1,5 +1,6 @@
 {
   "question": "Waar staan de instrumenten gerangschikt van klein naar groot?",
+  "questionSound": "exercise9/question.mp3",
   "possibleAnswers": ["exercise9/1.gif", "exercise9/2.gif", "exercise9/3.gif", "exercise9/4.gif"],
   "rightAnswer": "4"
 }

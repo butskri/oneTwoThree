@@ -1,5 +1,6 @@
 {
   "question": "Waar staan de dieren gerangschikt van klein naar groot?",
+  "questionSound": "exercise3b/question.mp3",
   "possibleAnswers": ["exercise3/1.gif", "exercise3/2.gif", "exercise3/3.gif", "exercise3/4.gif"],
   "rightAnswer": "3"
 }

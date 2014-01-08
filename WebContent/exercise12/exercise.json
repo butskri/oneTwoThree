@@ -1,5 +1,6 @@
 {
   "question": "Waar staan de tomaten gerangschikt van klein naar groot?",
+  "questionSound": "exercise12/question.mp3",
   "possibleAnswers": ["exercise12/1.jpg", "exercise12/2.jpg", "exercise12/3.jpg", "exercise12/4.jpg"],
   "rightAnswer": "3"
 }

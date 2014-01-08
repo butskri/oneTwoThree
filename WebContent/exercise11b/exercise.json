@@ -1,5 +1,6 @@
 {
   "question": "Op welke tekening is Bob De Bouwer het dikst?",
+  "questionSound": "exercise11b/question.mp3",
   "possibleAnswers": ["exercise11/1.jpg", "exercise11/2.jpg", "exercise11/3.jpg", "exercise11/4.jpg"],
   "rightAnswer": "4"
 }

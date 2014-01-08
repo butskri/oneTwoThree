@@ -1,5 +1,6 @@
 {
   "question": "Waar zijn de flessen fanta gerangschikt van dik naar dun?",
+  "questionSound": "exercise14b/question.mp3",
   "possibleAnswers": ["exercise14/1.jpg", "exercise14/2.jpg", "exercise14/3.jpg", "exercise14/4.jpg"],
   "rightAnswer": "2"
 }

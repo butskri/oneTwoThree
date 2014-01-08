@@ -1,5 +1,6 @@
 {
   "question": "Op welke tekening is Bob De Bouwer het dunst?",
+  "questionSound": "exercise11/question.mp3",
   "possibleAnswers": ["exercise11/1.jpg", "exercise11/2.jpg", "exercise11/3.jpg", "exercise11/4.jpg"],
   "rightAnswer": "1"
 }

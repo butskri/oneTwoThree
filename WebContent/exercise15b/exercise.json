@@ -1,5 +1,6 @@
 {
   "question": "Waar staan er vier sterren?",
+  "questionSound": "exercise15b/question.mp3",
   "possibleAnswers": ["exercise15/1.png", "exercise15/2.png", "exercise15/3.png", "exercise15/4.png"],
   "rightAnswer": "3"
 }
