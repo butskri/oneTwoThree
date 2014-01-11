@@ -52,14 +52,6 @@ div.answers {
 	margin: auto;
 }
 
-div.buttons {
-	margin: -100px auto 0;
-	min-width: 200px;
-	width: 60%;
-	height: 10%;
-	position: relative;
-}
-
 div.answer {
 	margin-top: 5%;
 	width: 37%;
@@ -67,6 +59,7 @@ div.answer {
 	margin-left: 6.5%;
 	margin-right: 6.5%;
 	float: left;
+	text-align: center;
 }
 
 img.answer {
@@ -82,20 +75,27 @@ img.answer.selected {
 }
 
 div.button {
-	width: 30%;
-	background-color: #0066ff;
-	color: white;
+	display: block;	
+	position: fixed;
+	left: 42.5%;
+	bottom: 0%;
+	width: 15%;
+	padding: 0.5% 0.5%;
+	margin-bottom: 1%;
 	border-radius: 10px;
-	margin: auto;
-	text-align: center;
+	background: #0066ff;
+	color: white;
 	font-size:5em;
+	text-align: center;
 }
+
+
 
 div.navigation {
 	display: block;	
 	position: fixed;
 	top: 50%;
-	margin-top: -50px;
+	margin-top: -4%;
 	padding: 2% 2%;
 	background: #0066ff;
 	color: white;
@@ -167,4 +167,54 @@ body.right img.answer.selected {
 
 body.wrong img.answer.selected {
 	border:1.75em solid red;
+}
+
+@media all and (min-width: 1330px) {
+	body {
+		font-size: 12px;
+	}
+}
+
+@media all and (min-width: 1255px) and (max-width: 1330px) {
+	body {
+		font-size: 11px;
+	}
+}
+
+@media all and (min-width: 1130px) and (max-width: 1255px) {
+	body {
+		font-size: 10px;
+	}
+}
+
+@media all and (min-width: 900px) and (max-width: 1130px) {
+	body {
+		font-size: 8px;
+	}
+}
+@media all and (max-width: 900px) {
+	body {
+		font-size: 6px;
+	}
+}
+
+@media all and (orientation: portrait) {
+	div.answers{
+		width: inherit;
+	}
+	div.answer {
+		width: 80%;
+		height: 15%;
+		margin-top: 2.5%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	img.answer {
+		max-height:15%; 
+	}
+	div.button {
+		left: 30%;
+		width: 40%;
+	}
+
 }
